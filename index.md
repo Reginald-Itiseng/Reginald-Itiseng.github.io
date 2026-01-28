@@ -4,3 +4,5 @@
 
 layout: home
 ---
+[View Projects]( /projects/ ){:.btn .btn--primary}
+[Read Docs]( /docs/ ){:.btn .btn--info}
