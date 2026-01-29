@@ -129,7 +129,7 @@ author:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       # url: "mailto:morpheusreg@gmail.com"
-    - label: "FabAccademy Docs"
+    - label: "My FabAcademy Docs"
       icon: "fas fa-fw fa-link"
       url: "https://fabacademy.org/2025/labs/rwanda/students/reginald-itiseng/"
     - label: "Twitter"
@@ -140,7 +140,7 @@ author:
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://reginald-itiseng.github.io/"
+      url: "https://github.com/reginald-itiseng"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
@@ -340,4 +340,5 @@ defaults:
     values:
       layout: default
       author_profile: true
+
 
