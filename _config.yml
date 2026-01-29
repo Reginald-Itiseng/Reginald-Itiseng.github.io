@@ -115,17 +115,23 @@ analytics:
 # Site Author
 author:
   name             : "Reginald Itiseng"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
+  avatar           : "/assets/images/bio-photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  bio             : |
+    Industrial Design graduate with formal training in Design Control Technology, programming, and electronic product development.
+    My work spans robotics, embedded systems, ROS-based platforms, and full-stack web applications, with a strong emphasis on system integration, reliability, and documentation.
+
+    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="reginald-itiseng-769678253" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://bw.linkedin.com/in/reginald-itiseng-769678253?trk=profile-badge"></a></div>
+              
   location         : "Gaborone, Botswana"
   email            : "morpheusreg@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:morpheusreg@gmail.com"
-    - label: "Website"
+      # url: "mailto:morpheusreg@gmail.com"
+    - label: "FabAccademy Docs"
       icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
+      url: "https://fabacademy.org/2025/labs/rwanda/students/reginald-itiseng/"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       # url: "https://twitter.com/"
@@ -134,7 +140,7 @@ author:
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://reginald-itiseng.github.io/"
+      url: "https://reginald-itiseng.github.io/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
