@@ -117,9 +117,6 @@ author:
   name             : "Reginald Itiseng"
   avatar           : "/assets/images/bio-photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio             : |
-    Industrial Design graduate with formal training in Design Control Technology, programming, and electronic product development.
-    My work spans robotics, embedded systems, ROS-based platforms, and full-stack web applications, with a strong emphasis on system integration, reliability, and documentation.
-
     <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
     <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="reginald-itiseng-769678253" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://bw.linkedin.com/in/reginald-itiseng-769678253?trk=profile-badge"></a></div>
               
