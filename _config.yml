@@ -21,7 +21,7 @@ title                    : "Reginald Itiseng's Portfolio"
 title_separator          : "-"
 subtitle                 : "Take a peek into my mind!" # site tagline that appears below site title in masthead
 name                     : "Reginald Itiseng"
-description              : "An industrial designer passionate about electronics and programming, specializing in electronic product design. Committed to expanding expertise in AI, robotics, and electronic design through continuous learning and innovation."
+description              : ""
 url                      : "https://reginald-itiseng.github.io/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "Reginald-Itiseng/Reginald-Itiseng.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
