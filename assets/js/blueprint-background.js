@@ -20,7 +20,7 @@ if (background && canvas) {
   const clock = new THREE.Clock();
 
   const cameraDistance = 6.4;
-  const viewportFill = 10;
+  const viewportFill = 12;
   const outsideViewRatio = 0.3;
   const minSmallScreenAnchor = -0.08;
   const maxRightAnchor = 0.42;
