@@ -1,0 +1,193 @@
+:root {
+  --blueprint-bg: #0a0c10;
+  --blueprint-line: rgba(112, 211, 232, 0.23);
+  --blueprint-line-strong: rgba(142, 225, 242, 0.34);
+  --blueprint-grid-small: rgba(91, 172, 192, 0.055);
+  --blueprint-grid-large: rgba(91, 172, 192, 0.095);
+  --blueprint-panel: rgba(10, 12, 16, 0.76);
+}
+
+/* Keep the animated drawing behind the whole site and away from interaction. */
+html,
+body {
+  min-height: 100%;
+}
+
+html {
+  background: var(--blueprint-bg);
+}
+
+body {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  color: #d7dee8;
+}
+
+.blueprint-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 86% 50%, rgba(26, 72, 92, 0.18), transparent 34rem),
+    linear-gradient(180deg, rgba(10, 12, 16, 0.96), rgba(10, 12, 16, 0.99));
+}
+
+.blueprint-bg__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+
+.blueprint-bg--ready .blueprint-bg__canvas {
+  opacity: 0.9;
+}
+
+.blueprint-bg__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.9;
+  background-image:
+    linear-gradient(var(--blueprint-grid-large) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blueprint-grid-large) 1px, transparent 1px),
+    linear-gradient(var(--blueprint-grid-small) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blueprint-grid-small) 1px, transparent 1px);
+  background-size: 8rem 8rem, 8rem 8rem, 2rem 2rem, 2rem 2rem;
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.25), #000 62%, rgba(0, 0, 0, 0.92));
+}
+
+.blueprint-bg__scanline {
+  position: absolute;
+  inset: -20% 0 auto;
+  height: 16rem;
+  opacity: 0.12;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(112, 211, 232, 0.11),
+    transparent
+  );
+  animation: blueprint-scan 24s linear infinite;
+}
+
+@keyframes blueprint-scan {
+  from {
+    transform: translateY(-20vh);
+  }
+  to {
+    transform: translateY(120vh);
+  }
+}
+
+/* Theme integration: content remains readable above the fixed background. */
+.masthead,
+.initial-content,
+.search-content {
+  position: relative;
+  z-index: 1;
+}
+
+.masthead {
+  background: rgba(10, 12, 16, 0.88);
+  border-bottom-color: rgba(112, 211, 232, 0.12);
+}
+
+.greedy-nav,
+.greedy-nav .visible-links a::before,
+.greedy-nav__toggle,
+.greedy-nav .hidden-links {
+  background: transparent;
+}
+
+.greedy-nav a,
+.site-title,
+.page__title,
+.archive__subtitle,
+.page__meta,
+.author__name,
+.author__bio,
+.author__urls a,
+.toc .nav__title,
+.toc__menu a,
+.taxonomy__index a,
+.page__content,
+.page__content p,
+.page__content li,
+.page__content h1,
+.page__content h2,
+.page__content h3,
+.page__content h4 {
+  color: #d7dee8;
+}
+
+.page__content a,
+.archive__item-title a,
+.author__urls a:hover {
+  color: #93d9e9;
+}
+
+.page,
+.archive,
+.sidebar {
+  background: var(--blueprint-panel);
+  box-shadow: 0 0 0 1px rgba(112, 211, 232, 0.08);
+  backdrop-filter: blur(2px);
+}
+
+.page,
+.archive {
+  padding: 1rem;
+}
+
+.page__footer {
+  position: relative;
+  background: rgba(7, 9, 12, 0.94);
+  color: #aeb8c7;
+}
+
+/* Preserve existing project cards while fitting them into the darker scene. */
+.layout--home .entries-grid .archive__item,
+.layout--posts .entries-grid .archive__item {
+  background: rgba(13, 18, 24, 0.9);
+  border-color: rgba(112, 211, 232, 0.16);
+}
+
+.layout--home .entries-grid .archive__item-title,
+.layout--posts .entries-grid .archive__item-title,
+.layout--home .entries-grid .archive__item-excerpt,
+.layout--posts .entries-grid .archive__item-excerpt {
+  color: #d7dee8;
+}
+
+.layout--home .entries-grid .archive__item-excerpt,
+.layout--posts .entries-grid .archive__item-excerpt {
+  background: rgba(7, 9, 12, 0.54);
+  border-left-color: rgba(112, 211, 232, 0.38);
+}
+
+@media (max-width: 767px) {
+  .blueprint-bg__canvas {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .blueprint-bg--ready .blueprint-bg__canvas {
+    opacity: 0.55;
+  }
+
+  .page,
+  .archive {
+    padding: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blueprint-bg__scanline {
+    animation: none;
+  }
+}

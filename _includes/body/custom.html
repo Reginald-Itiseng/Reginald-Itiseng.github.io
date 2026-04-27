@@ -1,0 +1,24 @@
+<!--
+  Fixed animated 3D blueprint background.
+  The canvas is decorative only and stays behind page content. To replace the
+  model later, change data-model-src to another GLB/GLTF asset.
+-->
+<div
+  class="blueprint-bg"
+  data-model-src="{{ '/assets/models/Assembly_Raspberry_Pi_4_B.glb' | relative_url }}"
+  aria-hidden="true"
+>
+  <canvas class="blueprint-bg__canvas"></canvas>
+  <span class="blueprint-bg__grid"></span>
+  <span class="blueprint-bg__scanline"></span>
+</div>
+
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+    }
+  }
+</script>
+<script type="module" src="{{ '/assets/js/blueprint-background.js' | relative_url }}"></script>
