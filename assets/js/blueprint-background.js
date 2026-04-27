@@ -21,7 +21,7 @@ if (background && canvas) {
 
   const cameraDistance = 6.4;
   const viewportFill = 12;
-  const outsideViewRatio = 0.3;
+  const outsideViewRatio = 1;
   const minSmallScreenAnchor = -0.08;
   const maxRightAnchor = 0.42;
 
