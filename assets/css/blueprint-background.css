@@ -150,6 +150,32 @@ body {
   color: #aeb8c7;
 }
 
+/* Keep the LinkedIn badge from adding a desktop scrollbar to the side panel. */
+.sidebar,
+.author__bio {
+  max-width: 100%;
+}
+
+.author__bio .badge-base,
+.author__bio iframe {
+  max-width: 100%;
+}
+
+@media (min-width: 64em) {
+  .sidebar,
+  .sidebar.sticky,
+  .author__bio {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 63.9375em) {
+  .sidebar,
+  .author__bio {
+    overflow-x: auto;
+  }
+}
+
 /* Preserve existing project cards while fitting them into the darker scene. */
 .layout--home .entries-grid .archive__item,
 .layout--posts .entries-grid .archive__item {
