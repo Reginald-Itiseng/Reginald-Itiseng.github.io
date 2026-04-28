@@ -9,8 +9,9 @@ tags:
   - fabrication
   - electronics
 excerpt: "Built an electric scooter in June 2025 as my Fab Academy final project, combining digital fabrication, electronics, and mobility design."
+link: "https://fabacademy.org/2025/labs/rwanda/students/reginald-itiseng/final-project.html"
 header:
-  teaser: "/assets/images/featured_projects/project-thumbnail-placeholder.svg"
+  teaser: "/assets/images/featured_projects/2025-06-20-project-log-electric-scooter-fab-academy-final-project/WhatsApp%20Image%202025-06-19%20at%2023.03.34_3180ab92.jpg"
 ---
 
 ## Project Goal

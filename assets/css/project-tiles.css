@@ -112,6 +112,17 @@
   text-wrap: balance;
 }
 
+.layout--home .entries-grid .archive__item--external-link,
+.layout--posts .entries-grid .archive__item--external-link {
+  cursor: pointer;
+}
+
+.layout--home .entries-grid .archive__item--external-link:focus-visible,
+.layout--posts .entries-grid .archive__item--external-link:focus-visible {
+  outline: 2px solid #93d9e9;
+  outline-offset: 0.25rem;
+}
+
 .layout--home .entries-grid .page__meta,
 .layout--posts .entries-grid .page__meta {
   margin: 0 1.05rem 0.6rem;

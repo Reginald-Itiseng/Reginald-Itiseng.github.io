@@ -195,6 +195,17 @@ body {
   font-size: 0.85rem;
 }
 
+.project-media--embed {
+  max-width: 42rem;
+}
+
+.project-media--embed iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.45rem;
+}
+
 /* Keep the LinkedIn badge from adding a desktop scrollbar to the side panel. */
 .sidebar,
 .author__bio {
