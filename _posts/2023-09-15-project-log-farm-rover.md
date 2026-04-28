@@ -113,20 +113,26 @@ The prototype reached the stage where it could be driven and demonstrated. The
 main test goals were simple but important: move forward, turn predictably, carry
 weight on the platform, and respond well enough to remote control input.
 
-<figure class="project-media project-media--video">
-  <video controls playsinline preload="metadata" poster="{{ '/assets/images/featured_projects/2023-09-15-project-log-farm-rover/Showcasing the prototype at the iles conference.jpg' | relative_url }}">
+<figure class="project-media project-media--video project-media--portrait-video">
+  <video controls playsinline preload="none" poster="{{ '/assets/images/featured_projects/2023-09-15-project-log-farm-rover/Showcasing the prototype at the iles conference.jpg' | relative_url }}">
     <source src="{{ '/assets/images/featured_projects/2023-09-15-project-log-farm-rover/prototype-test-drive.mp4' | relative_url }}" type="video/mp4">
     <a href="{{ '/assets/images/featured_projects/2023-09-15-project-log-farm-rover/prototype-test-drive.mp4' | relative_url }}">Open the prototype test drive video</a>.
   </video>
   <figcaption>Prototype test drive showing the rover moving under remote control.</figcaption>
+  <p class="project-media__links">
+    <a href="{{ '/assets/images/featured_projects/2023-09-15-project-log-farm-rover/prototype-test-drive.mp4' | relative_url }}">Open video file</a>
+  </p>
 </figure>
 
-<figure class="project-media project-media--video">
-  <video controls playsinline preload="metadata" poster="{{ '/assets/images/featured_projects/2023-09-15-project-log-farm-rover/farmrover concept CAD.jpg' | relative_url }}">
+<figure class="project-media project-media--video project-media--portrait-video">
+  <video controls playsinline preload="none" poster="{{ '/assets/images/featured_projects/2023-09-15-project-log-farm-rover/farmrover concept CAD.jpg' | relative_url }}">
     <source src="{{ '/assets/images/featured_projects/2023-09-15-project-log-farm-rover/prototype-demo.mp4' | relative_url }}" type="video/mp4">
     <a href="{{ '/assets/images/featured_projects/2023-09-15-project-log-farm-rover/prototype-demo.mp4' | relative_url }}">Open the Farm Rover prototype video</a>.
   </video>
   <figcaption>Farm Rover prototype demonstration video.</figcaption>
+  <p class="project-media__links">
+    <a href="{{ '/assets/images/featured_projects/2023-09-15-project-log-farm-rover/prototype-demo.mp4' | relative_url }}">Open video file</a>
+  </p>
 </figure>
 
 ## Public Showcases
