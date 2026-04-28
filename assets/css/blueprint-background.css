@@ -97,6 +97,26 @@ body {
   border-bottom-color: rgba(112, 211, 232, 0.12);
 }
 
+.site-logo img {
+  max-height: 3rem;
+  width: auto;
+}
+
+.site-title {
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.site-subtitle {
+  display: block;
+  margin-top: 0.2rem;
+  color: #9fb3c8;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .greedy-nav,
 .greedy-nav .visible-links a::before,
 .greedy-nav__toggle,
@@ -148,6 +168,20 @@ body {
   position: relative;
   background: rgba(7, 9, 12, 0.94);
   color: #aeb8c7;
+}
+
+.project-media {
+  margin-inline: auto;
+}
+
+.project-media--video {
+  max-width: 42rem;
+}
+
+.project-media--video video {
+  display: block;
+  width: 100%;
+  border-radius: 0.45rem;
 }
 
 /* Keep the LinkedIn badge from adding a desktop scrollbar to the side panel. */
@@ -209,6 +243,10 @@ body {
   .page,
   .archive {
     padding: 0.75rem;
+  }
+
+  .site-logo img {
+    max-height: 2.4rem;
   }
 }
 

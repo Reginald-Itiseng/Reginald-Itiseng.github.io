@@ -17,16 +17,16 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 # Site Settings
 locale                   : "en-GB"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
-title                    : "Reginald Itiseng's Portfolio"
+title                    : "Reginald Itiseng"
 title_separator          : "-"
-subtitle                 : "Take a peek into my mind!" # site tagline that appears below site title in masthead
+subtitle                 : "Robotics, fabrication, and systems with a maker's pulse." # site tagline that appears below site title in masthead
 name                     : "Reginald Itiseng"
-description              : "Portfolio blog with project build logs, experiments, and technical reflections."
+description              : "Reginald Itiseng's portfolio of robotics, fabrication, mobility, and embedded systems projects."
 url                      : "https://reginald-itiseng.github.io/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "Reginald-Itiseng/Reginald-Itiseng.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : "/assets/images/featured_projects/project-thumbnail-placeholder.svg" # fallback project thumbnail
-logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+logo                     : "/morpheusreg_industries.png" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 breadcrumbs              : # true, false (default)
 words_per_minute         : 200
