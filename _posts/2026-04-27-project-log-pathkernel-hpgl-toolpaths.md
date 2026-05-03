@@ -6,103 +6,212 @@ categories:
 tags:
   - fabrication
   - cnc
+  - pcb
+  - python
   - hpgl
   - toolpaths
-excerpt: "Built PathKernel to generate HPGL tool paths for a Bungard CCD PCB milling machine."
+excerpt: "Built PathKernel, a Python tool created to keep PCB milling classes moving by turning Gerber files into HPGL operations for the Bungard CCD PCB plotter."
 header:
-  teaser: "/assets/images/featured_projects/project-thumbnail-placeholder.svg"
+  teaser: "/assets/images/featured_projects/2026-04-27-project-log-pathkernel-hpgl-toolpaths/intro_image.png"
 ---
 
 ## Project Goal
 
-PathKernel is a tool I built to generate HPGL tool paths for a Bungard CCD
-machine. The goal was to make the path generation step more direct, predictable,
-and easier to adjust when preparing fabrication jobs for PCB milling.
+PathKernel is a Python tool I built specifically for the Bungard CCD PCB
+plotter workflow. Its main job is to take Gerber files, process them for PCB
+isolation milling, and generate HPGL tool paths that can be used in RoutePro
+2000.
 
-The Bungard CCD is capable, but getting clean machine-ready output depends on
-the tool path being clear about movement, tool engagement, and the order of
-operations. PathKernel was my way of taking more control over that translation
-instead of treating the HPGL output as a black box.
+The goal was to make PCB milling preparation more direct, understandable, and
+repeatable. Instead of relying on a black-box conversion step, I wanted control
+over how each PCB operation is generated and how the selected tools affect the
+final machine output.
+
+<figure>
+  <img src="/assets/images/featured_projects/2026-04-27-project-log-pathkernel-hpgl-toolpaths/intro_image.png" alt="PathKernel interface showing imported Gerber layers, generated PCB geometry, and cutout planner settings">
+  <figcaption>PathKernel previewing imported Gerber layers, generated toolpath geometry, and cutout settings.</figcaption>
+</figure>
 
 ## Why I Built It
 
-When working with fabrication machines, the final machine file is where many
-small assumptions become real motion. A path that looks acceptable on screen can
-still waste time, move inefficiently, or behave unexpectedly once it reaches the
-machine.
+PathKernel started as a practical problem in the electronics lab. The Bungard
+CCD normally uses Bungard's IsoCam software to process Gerber layers for
+milling, but the IsoCam dongle was missing or had never been purchased. Without
+that software access, the PCB plotter could not be used properly for class work.
 
-For this project, I wanted a generator that could focus on the practical needs
-of the Bungard workflow:
+CopperCAM was a possible alternative and could generate proper machine files,
+but it required a licence purchase. University procurement can take time, and
+classes could not afford to lose that time waiting for software access.
 
-- Produce HPGL output that the Bungard CCD can read
-- Keep travel moves and cutting moves easy to reason about
-- Make tool path generation repeatable across similar jobs
-- Create a foundation I can keep improving as I test more boards
+That gap created the need for a temporary solution that could also become a
+long-term lab tool. PathKernel was built to fill that need.
+
+When working with the Bungard CCD, the quality of the final PCB depends heavily
+on the tool paths. The software step needs to understand the difference between
+making traces, clearing unused copper, drilling holes, and cutting the board
+outline.
+
+I built PathKernel to make that workflow easier to manage:
+
+- Import Gerber files for PCB processing
+- Select active tools before generating operations
+- Generate HPGL files compatible with RoutePro 2000
+- Separate PCB jobs into clear fabrication operations
+- Support single-sided and double-sided PCB workflows
 
 ## What PathKernel Does
 
-PathKernel converts design intent into a sequence of HPGL commands for the
-machine. At its core, it is responsible for building paths, ordering movement,
-and writing the command output in a format that matches the Bungard CCD's
-expected workflow.
+PathKernel turns PCB design files into machine-ready operations for the Bungard
+CCD. The software currently supports importing Gerber files, selecting which
+tools are active, and using those tools to generate the proper output for each
+fabrication step.
 
-The first version focuses on the essentials:
+Supported operations include:
 
-- Generating machine-readable HPGL
-- Separating rapid/travel moves from tool-down moves
-- Structuring paths so they can be inspected before running the job
-- Keeping the output predictable enough for repeated fabrication tests
+- **Isolation milling:** cutting around traces to electrically separate them
+- **Hatching:** clearing unused copper from larger areas of the board
+- **Board cutout:** generating the outline path for cutting the PCB shape
+- **Drilling:** producing drill operations for vias and through-hole parts
+- **Double-sided PCB support:** helping align and process both board sides more easily
+
+The tool selection step is important because each operation needs to respect the
+active tool settings. A drilling operation, for example, should not be treated
+the same way as trace isolation or copper clearing.
 
 ## Development Notes
 
-I approached PathKernel as a small but important piece of fabrication
-infrastructure. The project sits between the design file and the machine, so I
-paid attention to clarity more than cleverness. I wanted the output to be easy
-to inspect, edit, and debug.
+I approached PathKernel as fabrication infrastructure. It sits between the PCB
+design files and the machine, so the output needs to be predictable, inspectable,
+and practical on real hardware.
 
-A major part of the build was thinking through how coordinates should be handled
-before they become physical motion. The Bungard CCD responds to HPGL commands,
-so PathKernel needed to treat each move as part of a larger machining sequence,
-not just as a line in a file.
+The project was vibe coded to move fast because the lab needed something usable
+quickly. I used Codex to rapidly prototype the Python software, then tested it
+against real Gerber files and fixed runtime issues as they appeared. The loop was
+simple: generate files, test the output, find what failed, correct the logic, and
+try again.
 
-## Early Results
+A major part of the project was thinking through how Gerber geometry becomes
+physical motion. The software has to translate design data into paths that make
+sense for a milling bit, not just reproduce the drawing. That includes operation
+order, tool choice, offsets, clearances, and export formatting for the RoutePro
+2000 workflow.
 
-The first prototype successfully generates HPGL tool paths for the Bungard CCD
-workflow. It gives me a clearer path from a planned PCB operation to a file that
-can be sent to the machine.
+Double-sided PCB support also shaped the project. Milling one side of a board is
+already sensitive to alignment and setup; doing both sides requires the software
+to make the workflow easier rather than adding more manual guesswork.
 
-The biggest win so far is control. Instead of only hoping that the generated
-output is suitable, I can now inspect the path logic, adjust generation rules,
-and improve the machine file step by step.
+## Results
+
+PathKernel currently provides a clearer path from Gerber files to HPGL files for
+the Bungard CCD. It can generate the main operations needed for PCB milling:
+isolation, hatching, drilling, and board cutout.
+
+The biggest win is control. I can choose tools, generate operation-specific
+outputs, inspect the logic, and prepare files for RoutePro 2000 in a workflow
+that matches how I actually use the machine.
+
+## Benchmark Test
+
+To test PathKernel against a real board, I used the electric scooter control
+board PCB as a benchmark. This board was a good test case because it was already
+a working PCB from my [Electric Scooter Fab Academy final project](/projects/project-log-electric-scooter-fab-academy-final-project/),
+so I could compare PathKernel's output against a known design instead of testing
+with an abstract sample file.
+
+The benchmark focused on whether PathKernel could process the Gerber files,
+generate usable HPGL operations, and cut the board accurately on the Bungard CCD.
+It was also a practical way to check the software's isolation milling behavior,
+toolpath spacing, board outline handling, and overall machine workflow.
+
+<figure class="project-media project-media--embed">
+  <iframe src="https://www.youtube.com/embed/4KL2CMqa3VU?si=fNP29R1I-_j4amiD" title="PathKernel benchmark test cutting the electric scooter control board PCB" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <figcaption>Benchmark test: using PathKernel to cut the electric scooter control board PCB.</figcaption>
+</figure>
+
+This will be part of a longer video series documenting PathKernel properly. I
+plan to make separate videos covering different parts of the workflow, including
+Gerber import, tool selection, isolation milling, hatching, drilling, cutout, and
+double-sided PCB setup.
+
+## Double-Sided PCB Trial
+
+Another important test for PathKernel was a BLDC motor driver PCB that I started
+as a separate electronics project. The motor driver itself did not work in the
+end, but the board was still valuable because it proved something important
+about PathKernel: the software could help me fabricate a more demanding
+double-sided PCB without making the process feel difficult.
+
+That mattered because double-sided boards are usually where PCB milling becomes
+more sensitive. Layer alignment, drilling, board flipping, and operation order
+all have to work together. Even though the circuit still needed debugging,
+PathKernel made the physical fabrication step manageable.
+
+<figure class="project-media project-media--embed">
+  <iframe src="https://www.youtube.com/embed/Qt7DD_LEXkU?si=AyUQG7e4mjskSeUo" title="BLDC motor driver PCB KiCad design phase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <figcaption>BLDC motor driver PCB design phase in KiCad before fabrication with PathKernel.</figcaption>
+</figure>
+
+### Gerber Import And File Generation
+
+After designing the board in KiCad, I exported the Gerber and drill files and
+imported them into PathKernel. From there, PathKernel generated the full set of
+HPGL files needed to fabricate the double-sided PCB on the Bungard CCD.
+
+The generated operations included:
+
+- Top layer trace isolation milling
+- Bottom layer trace isolation milling
+- Centering holes for aligning the board when flipping to the opposite side
+- Drill files for through-hole pads and vias
+- Hatching files for clearing unused copper
+- Board cutout files for the final PCB outline
+
+This step is where PathKernel became more than just a viewer. It handled the
+transition from PCB design data to separated machine operations that could be
+loaded into RoutePro 2000 in the correct fabrication sequence.
+
+<figure class="project-media project-media--embed">
+  <iframe src="https://www.youtube.com/embed/j9hIg2lzUk8?si=GBgjz1HT3-ipWd2N" title="Generating BLDC motor driver PCB toolpaths in PathKernel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <figcaption>Importing the BLDC motor driver Gerbers into PathKernel and generating isolation, drilling, hatching, alignment, and cutout files.</figcaption>
+</figure>
+
+### Bungard CCD Cutting Phase
+
+The next part of the story is the physical cutting stage on the Bungard CCD. In
+this phase, the HPGL files generated by PathKernel are loaded into RoutePro 2000
+and used to mill the board: first preparing the alignment holes, then cutting
+the trace isolation paths, drilling, clearing copper, and finally cutting out
+the PCB.
+
+<figure class="project-media project-media--embed">
+  <iframe src="https://www.youtube.com/embed/AmluQQUAsoc?si=FvsUUm_YhDJASs59" title="PathKernel cutting the BLDC motor driver PCB" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <figcaption>PCB cutting phase: fabricating the double-sided BLDC motor driver board with PathKernel.</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/images/featured_projects/2026-04-27-project-log-pathkernel-hpgl-toolpaths/BLDC_driverToplayer_hero_shot.jpg" alt="Top layer of the BLDC motor driver PCB milled with PathKernel on the Bungard CCD">
+  <figcaption>Top layer of the BLDC motor driver PCB after milling with PathKernel-generated toolpaths.</figcaption>
+</figure>
 
 ## What I Learned
 
-This project reminded me that fabrication software is also part of the machine.
-Even if the hardware is accurate, the job still depends on the instructions
-being clean, intentional, and suited to the process.
+This project reminded me that fabrication software is part of the machine. Even
+if the Bungard CCD is accurate, the board still depends on the generated
+instructions being clean, intentional, and suited to the operation.
 
 Working on PathKernel also gave me a better understanding of how small software
-decisions affect physical outcomes. Coordinate handling, move ordering, and file
-format details all show up later as time, surface finish, and reliability at the
-machine.
+decisions affect physical outcomes. Tool selection, offsets, operation order,
+file formatting, and double-sided alignment all show up later as cut quality,
+time, reliability, and whether the PCB is usable.
 
 ## Next Iteration
 
-The next version will focus on making PathKernel easier to validate before a
-job reaches the Bungard CCD.
+The next version will focus on making PathKernel easier to preview and validate
+before a job reaches the Bungard CCD.
 
 - Add visual previews of generated paths
-- Improve path ordering to reduce unnecessary travel moves
-- Add clearer configuration for tool diameter and operation type
+- Improve path ordering for each operation type
+- Add clearer configuration for tool diameter, depth, and operation settings
 - Test against more board layouts and document machine behavior
-- Add photos and screenshots of the generator, HPGL output, and finished cuts
-
-## Media To Add
-
-I will add images once I have the project shots ready.
-
-- PathKernel interface or code view
-- Example HPGL output
-- Bungard CCD setup
-- Test board before milling
-- Finished milled board
+- Improve double-sided PCB setup and alignment guidance
+- Add screenshots of the interface, HPGL output, and finished milled boards

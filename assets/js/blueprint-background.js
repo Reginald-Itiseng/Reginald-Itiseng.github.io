@@ -21,13 +21,21 @@ if (background && canvas) {
 
   const cameraDistance = 6.4;
   const viewportFill = 12;
-  const outsideViewRatio = 1;
+  const outsideViewRatio = 0.8;
   const minSmallScreenAnchor = -0.08;
   const maxRightAnchor = 0.42;
 
   let frameId = 0;
   let fittedModel = null;
   let baseModelX = 0;
+
+  const parseDataNumber = (value, fallback) => {
+    const parsed = Number.parseFloat(value);
+    return Number.isFinite(parsed) ? parsed : fallback;
+  };
+
+  const modelScale = Math.max(parseDataNumber(background.dataset.modelScale, 1), 0.01);
+  const modelOffsetX = parseDataNumber(background.dataset.modelOffsetX, 0);
 
   renderer.setClearColor(0x000000, 0);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
@@ -55,7 +63,7 @@ if (background && canvas) {
     const modelWidth = Math.max(size.x, 1);
     const viewHeight = 2 * cameraDistance * Math.tan(THREE.MathUtils.degToRad(camera.fov * 0.5));
     const viewWidth = viewHeight * camera.aspect;
-    const scale = (viewHeight * viewportFill) / modelHeight;
+    const scale = ((viewHeight * viewportFill) / modelHeight) * modelScale;
     const scaledWidth = modelWidth * scale;
 
     object.scale.setScalar(scale);
@@ -64,7 +72,7 @@ if (background && canvas) {
     const minX = viewWidth * minSmallScreenAnchor;
     const maxX = viewWidth * maxRightAnchor;
 
-    baseModelX = THREE.MathUtils.clamp(desiredX, minX, maxX);
+    baseModelX = THREE.MathUtils.clamp(desiredX, minX, maxX) + (viewWidth * modelOffsetX);
     modelRoot.position.set(baseModelX, 0, 0);
 
     camera.position.set(0.1, 0.05, cameraDistance);
@@ -115,29 +123,40 @@ if (background && canvas) {
     frameId = window.requestAnimationFrame(animate);
   };
 
+  const loadModel = (modelSrc, isFallback = false) => {
+    loader.load(
+      modelSrc,
+      (gltf) => {
+        const wireModel = convertToWireframe(gltf.scene);
+        const centeredModel = new THREE.Group();
+        const center = new THREE.Box3().setFromObject(wireModel).getCenter(new THREE.Vector3());
+
+        wireModel.position.sub(center);
+        centeredModel.add(wireModel);
+        fittedModel = centeredModel;
+        fitModelToView(centeredModel);
+        modelRoot.add(centeredModel);
+        background.classList.add("blueprint-bg--ready");
+        animate();
+      },
+      undefined,
+      () => {
+        const defaultModelSrc = background.dataset.defaultModelSrc;
+
+        if (!isFallback && defaultModelSrc && defaultModelSrc !== modelSrc) {
+          loadModel(defaultModelSrc, true);
+          return;
+        }
+
+        background.classList.add("blueprint-bg--failed");
+        renderer.dispose();
+        window.cancelAnimationFrame(frameId);
+      }
+    );
+  };
+
   resize();
   window.addEventListener("resize", resize, { passive: true });
 
-  loader.load(
-    background.dataset.modelSrc,
-    (gltf) => {
-      const wireModel = convertToWireframe(gltf.scene);
-      const centeredModel = new THREE.Group();
-      const center = new THREE.Box3().setFromObject(wireModel).getCenter(new THREE.Vector3());
-
-      wireModel.position.sub(center);
-      centeredModel.add(wireModel);
-      fittedModel = centeredModel;
-      fitModelToView(centeredModel);
-      modelRoot.add(centeredModel);
-      background.classList.add("blueprint-bg--ready");
-      animate();
-    },
-    undefined,
-    () => {
-      background.classList.add("blueprint-bg--failed");
-      renderer.dispose();
-      window.cancelAnimationFrame(frameId);
-    }
-  );
+  loadModel(background.dataset.modelSrc);
 }

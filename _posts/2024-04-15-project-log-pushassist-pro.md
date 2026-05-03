@@ -75,10 +75,51 @@ balance between assistance and trust became the core of the project.
 
 ## Recognition
 
-PushAssist Pro received strong recognition in 2024:
+PushAssist Pro received strong recognition in 2024 through two innovation
+competitions. The first major milestone was the CIPA World Intellectual
+Property Day competition, followed later by the Orange Summer Challenge.
 
-- Second place at the Botswana World Intellectual Property Day competition
-- Second place at the Orange Summer Challenge
+### CIPA World Intellectual Property Day 2024
+
+PushAssist Pro won second place at the Botswana World Intellectual Property Day
+innovation competition. This was an important moment because it showed that the
+project was more than a student prototype; it had real potential as an
+assistive technology concept.
+
+<figure>
+  <img src="/assets/images/featured_projects/2024-04-15-project-log-pushassist-pro/stage%20photo%20of%20psecond%20place%20price%20award%20for%20the%20push%20assist%20cipa%20competition.jpg" alt="PushAssist Pro team receiving second prize at the World Intellectual Property Day 2024 innovation competition">
+  <figcaption>Receiving second prize at the World Intellectual Property Day 2024 innovation competition.</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/images/featured_projects/2024-04-15-project-log-pushassist-pro/group%20photo%20of%20me%20and%20my%20class%20mates%20holding%20the%20prize%20for%20the%20push%20assist%20cipa%20competiton.jpg" alt="PushAssist Pro team holding the second prize award cheque at the CIPA competition">
+  <figcaption>Team photo after the CIPA second prize recognition for PushAssist Pro.</figcaption>
+</figure>
+
+### Orange Summer Challenge 2024
+
+After the CIPA recognition, PushAssist Pro continued into the Orange Summer
+Challenge 2024. This stage gave the project another platform for public
+presentation, prototype demonstration, and feedback from people outside the
+classroom.
+
+PushAssist Pro won second place at the Orange Summer Challenge, further
+validating the idea as a practical mobility and accessibility solution.
+
+<figure>
+  <img src="/assets/images/featured_projects/2024-04-15-project-log-pushassist-pro/push%20assist%20at%20the%20OSC%20final%20day.jpg" alt="PushAssist Pro being demonstrated at the Orange Summer Challenge 2024 final day">
+  <figcaption>Demonstrating PushAssist Pro during the Orange Summer Challenge 2024 final day.</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/images/featured_projects/2024-04-15-project-log-pushassist-pro/improved-pushAssist-next%20to%20price%20.jpg" alt="PushAssist Pro prototype displayed beside the Orange Summer Challenge second place prize">
+  <figcaption>The improved PushAssist Pro prototype displayed beside the Orange Summer Challenge second place prize.</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/images/featured_projects/2024-04-15-project-log-pushassist-pro/group%20pic%20of%20OSC%20participants-winnerson%20front%20row%20%20holding%20prices-me%20anmy%20osc%20team%20far%20right.webp" alt="Orange Summer Challenge 2024 winners group photo with the PushAssist Pro team holding the second place prize">
+  <figcaption>Orange Summer Challenge 2024 winners group photo, with the PushAssist Pro team receiving second place.</figcaption>
+</figure>
 
 These awards meant a lot because they showed that the project was not only a
 technical prototype, but an idea with real-world value. Both competitions
